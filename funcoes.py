@@ -5,3 +5,4 @@ def rolar_dados(numero):
 
 
 
+#proxima funcao
