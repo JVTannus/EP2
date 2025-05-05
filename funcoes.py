@@ -105,3 +105,20 @@ def calcula_pontos_full_house(dados):
     if num_2 == 1 and num_3 == 1:
         return total
     return 0
+
+#9
+def calcula_pontos_quadra(dados):
+    frequencias = {}
+    total = 0
+
+    for dado in dados:
+        total += dado
+        if dado in frequencias:
+            frequencias[dado] += 1
+        else:
+            frequencias[dado] = 1
+
+    for chave in frequencias:
+        if frequencias[chave] >= 4:
+            return total
+    return 0
