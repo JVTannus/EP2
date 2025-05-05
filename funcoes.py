@@ -134,6 +134,7 @@ def calcula_pontos_quina(dados):
             frequencias[dado] = 1
 
     for chave in frequencias:
-        if frequencias[chave] == 5:
+        if frequencias[chave] >= 5:
             return 50
     return 0
+
