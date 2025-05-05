@@ -147,7 +147,7 @@ def cinco_iguais(dados):
     return 50
 
 def full_house(dados):
-    contagens = [0, 0, 0, 0, 0, 0]  # posições 0 a 5 representam valores 1 a 6
+    contagens = [0, 0, 0, 0, 0, 0]
     for valor in dados:
         contagens[valor - 1] += 1
 
@@ -156,11 +156,11 @@ def full_house(dados):
     for i in range(6):
         if contagens[i] == 3:
             tem_3 = True
-        if contagens[i] == 2:
+        elif contagens[i] == 2:
             tem_2 = True
 
     if tem_3 and tem_2:
-        return 25
+        return sem_combinacao(dados)
     return 0
 
 def quadra(dados):
@@ -180,11 +180,10 @@ def sem_combinacao(dados):
     return soma
 
 def sequencia_alta(dados):
-    tem = [0, 0, 0, 0, 0, 0]  # representa se 1 a 6 estão presentes
+    tem = [0, 0, 0, 0, 0, 0]
     for valor in dados:
         tem[valor - 1] = 1
 
-    # checar se 1-5 estão presentes
     todos_presentes = True
     for i in range(5):
         if tem[i] != 1:
@@ -193,7 +192,6 @@ def sequencia_alta(dados):
     if todos_presentes:
         return 40
 
-    # checar se 2-6 estão presentes
     todos_presentes = True
     for i in range(1, 6):
         if tem[i] != 1:
@@ -210,11 +208,10 @@ def sequencia_baixa(dados):
         tem[valor - 1] = 1
 
     sequencias = [
-        [0, 1, 2, 3],  # 1-2-3-4
-        [1, 2, 3, 4],  # 2-3-4-5
-        [2, 3, 4, 5],  # 3-4-5-6
+        [0, 1, 2, 3],  # 1-4
+        [1, 2, 3, 4],  # 2-5
+        [2, 3, 4, 5],  # 3-6
     ]
-
     for seq in sequencias:
         encontrada = True
         for i in seq:
@@ -234,5 +231,4 @@ def calcula_pontos_regra_avancada(dados):
         'sequencia_alta': sequencia_alta(dados),
         'sequencia_baixa': sequencia_baixa(dados),
     }
-
     
