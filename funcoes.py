@@ -64,3 +64,20 @@ def calcula_pontos_sequencia_baixa(lista):
         return 15
     else:
         return 0
+
+#7
+def calcula_pontos_sequencia_alta(lista):
+    i = 0
+    nova = []
+
+    while i < len(lista):
+        if lista[i] not in nova:
+            nova.append(lista[i])
+        i += 1
+    if 1 in nova and 2 in nova and 3 in nova and 4 in nova and 5 in nova:
+        return 30
+    if 2 in nova and 3 in nova and 4 in nova and 5 in nova and 6 in nova:
+        return 30
+    else:
+        return 0
+    
