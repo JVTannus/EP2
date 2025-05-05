@@ -38,3 +38,10 @@ def calcula_pontos_regra_simples(lista_face):
         pont[f] = soma
 
     return pont
+
+#5
+def calcula_pontos_soma(lista):
+    soma = 0
+    for num in lista:
+        soma += num
+    return soma
