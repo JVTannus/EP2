@@ -15,8 +15,13 @@ def guardar_dado(dados_rolados, dados_guardados, indice):
     return [resp, dados_guardados]
 
 #3
-def remover_dado(dados_rolados, dados_no_estoque, dado_para_remover):
-    dado = dados_no_estoque[dado_para_remover]
-    novos_dados_rolados = dados_rolados + [dado]
-    novos_dados_no_estoque = dados_no_estoque[:dado_para_remover] + dados_no_estoque[dado_para_remover+1:]
-    return novos_dados_rolados, novos_dados_no_estoque
+def remover_dado(dados_rolados, dados_guardados, indice):
+    d = dados_guardados[indice]
+    resposta = []
+    for i in range(len(dados_guardados)):
+        if i != indice:
+            resposta.append(dados_guardados[i])
+    
+    dados_rolados.append(d)
+    
+    return [dados_rolados, resposta]
