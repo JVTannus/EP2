@@ -139,7 +139,7 @@ def calcula_pontos_quina(dados):
     return 0
 
 #11
-def cinco_iguais(dados):
+def calcula_pontos_quina(dados):
     primeiro = dados[0]
     for valor in dados:
         if valor != primeiro:
@@ -160,7 +160,7 @@ def full_house(dados):
             tem_2 = True
 
     if tem_3 and tem_2:
-        return sem_combinacao(dados)
+        return sem_combinacao_pura(dados)
     return 0
 
 def quadra(dados):
@@ -173,33 +173,25 @@ def quadra(dados):
             return 20
     return 0
 
-def sem_combinacao(dados):
-    soma = 0
-    for valor in dados:
-        soma += valor
-    return soma
-
 def sequencia_alta(dados):
     tem = [0, 0, 0, 0, 0, 0]
     for valor in dados:
         tem[valor - 1] = 1
 
-    todos_presentes = True
+    sequencia1 = True
     for i in range(5):
         if tem[i] != 1:
-            todos_presentes = False
+            sequencia1 = False
             break
-    if todos_presentes:
-        return 40
 
-    todos_presentes = True
+    sequencia2 = True
     for i in range(1, 6):
         if tem[i] != 1:
-            todos_presentes = False
+            sequencia2 = False
             break
-    if todos_presentes:
-        return 40
 
+    if sequencia1 or sequencia2:
+        return sem_combinacao_pura(dados)
     return 0
 
 def sequencia_baixa(dados):
@@ -212,6 +204,7 @@ def sequencia_baixa(dados):
         [1, 2, 3, 4],  # 2-5
         [2, 3, 4, 5],  # 3-6
     ]
+
     for seq in sequencias:
         encontrada = True
         for i in seq:
@@ -219,16 +212,36 @@ def sequencia_baixa(dados):
                 encontrada = False
                 break
         if encontrada:
-            return 30
+            return sem_combinacao_pura(dados)
     return 0
+
+def sem_combinacao_pura(dados):
+    soma = 0
+    for valor in dados:
+        soma += valor
+    return soma
+
+def sem_combinacao(dados):
+    if calcula_pontos_quina(dados) > 0:
+        return 0
+    if full_house(dados) > 0:
+        return 0
+    if quadra(dados) > 0:
+        return 0
+    if sequencia_alta(dados) > 0:
+        return 0
+    if sequencia_baixa(dados) > 0:
+        return 0
+    return sem_combinacao_pura(dados)
 
 def calcula_pontos_regra_avancada(dados):
     return {
-        'cinco_iguais': cinco_iguais(dados),
+        'cinco_iguais': calcula_pontos_quina(dados),
         'full_house': full_house(dados),
         'quadra': quadra(dados),
         'sem_combinacao': sem_combinacao(dados),
         'sequencia_alta': sequencia_alta(dados),
         'sequencia_baixa': sequencia_baixa(dados),
     }
+
     
