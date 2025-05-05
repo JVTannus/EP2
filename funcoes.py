@@ -51,7 +51,8 @@ def calcula_pontos_sequencia_baixa(lista):
     i = 0
     nova = []
     while i < len(lista):
-        nova.append(i)
+        if lista[i] not in nova:
+            nova.append(i)
         i += 1
     if 1 in nova and 2 in nova and 3 in nova and 4 in nova:
         return 15
