@@ -139,11 +139,100 @@ def calcula_pontos_quina(dados):
     return 0
 
 #11
+def cinco_iguais(dados):
+    primeiro = dados[0]
+    for valor in dados:
+        if valor != primeiro:
+            return 0
+    return 50
+
+def full_house(dados):
+    contagens = [0, 0, 0, 0, 0, 0]  # posições 0 a 5 representam valores 1 a 6
+    for valor in dados:
+        contagens[valor - 1] += 1
+
+    tem_3 = False
+    tem_2 = False
+    for i in range(6):
+        if contagens[i] == 3:
+            tem_3 = True
+        if contagens[i] == 2:
+            tem_2 = True
+
+    if tem_3 and tem_2:
+        return 25
+    return 0
+
+def quadra(dados):
+    contagens = [0, 0, 0, 0, 0, 0]
+    for valor in dados:
+        contagens[valor - 1] += 1
+
+    for i in range(6):
+        if contagens[i] >= 4:
+            return 20
+    return 0
+
+def sem_combinacao(dados):
+    soma = 0
+    for valor in dados:
+        soma += valor
+    return soma
+
+def sequencia_alta(dados):
+    tem = [0, 0, 0, 0, 0, 0]  # representa se 1 a 6 estão presentes
+    for valor in dados:
+        tem[valor - 1] = 1
+
+    # checar se 1-5 estão presentes
+    todos_presentes = True
+    for i in range(5):
+        if tem[i] != 1:
+            todos_presentes = False
+            break
+    if todos_presentes:
+        return 40
+
+    # checar se 2-6 estão presentes
+    todos_presentes = True
+    for i in range(1, 6):
+        if tem[i] != 1:
+            todos_presentes = False
+            break
+    if todos_presentes:
+        return 40
+
+    return 0
+
+def sequencia_baixa(dados):
+    tem = [0, 0, 0, 0, 0, 0]
+    for valor in dados:
+        tem[valor - 1] = 1
+
+    sequencias = [
+        [0, 1, 2, 3],  # 1-2-3-4
+        [1, 2, 3, 4],  # 2-3-4-5
+        [2, 3, 4, 5],  # 3-4-5-6
+    ]
+
+    for seq in sequencias:
+        encontrada = True
+        for i in seq:
+            if tem[i] != 1:
+                encontrada = False
+                break
+        if encontrada:
+            return 30
+    return 0
+
 def calcula_pontos_regra_avancada(dados):
     return {
-        'sequencia_baixa': calcula_pontos_sequencia_baixa(dados),
-        'sequencia_alta': calcula_pontos_sequencia_alta(dados),
-        'full_house': calcula_pontos_full_house(dados),
-        'quadra': calcula_pontos_quadra(dados),
-        'quina': calcula_pontos_quina(dados)
+        'cinco_iguais': cinco_iguais(dados),
+        'full_house': full_house(dados),
+        'quadra': quadra(dados),
+        'sem_combinacao': sem_combinacao(dados),
+        'sequencia_alta': sequencia_alta(dados),
+        'sequencia_baixa': sequencia_baixa(dados),
     }
+
+    
