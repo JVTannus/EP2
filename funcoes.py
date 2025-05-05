@@ -45,3 +45,19 @@ def calcula_pontos_soma(lista):
     for num in lista:
         soma += num
     return soma
+
+#6
+def calcula_pontos_sequencia_baixa(lista):
+    i = 0
+    nova = []
+    while i < len(lista):
+        nova.append(i)
+    i += 1
+    if 1 in nova and 2 in nova and 3 in nova and 4 in nova:
+        return 15
+    if 2 in nova and 3 in nova and 4 in nova and 5 in nova:
+        return 15
+    if 3 in nova and 4 in nova and 5 in nova and 6 in nova:
+        return 15
+    else:
+        return 0
